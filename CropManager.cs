@@ -86,13 +86,14 @@ namespace ConsoleApp1
                 int cropChoice = int.Parse(Console.ReadLine());
                 Console.Clear();
                 ViewCrops();
+                Crop existingCrop;
 
                 if (cropChoice == 1)
                 {
                     Console.WriteLine("\nAdd to the quantity of an already existing croptype.\n");
                     Console.WriteLine("What Id?");
                     int idInput = int.Parse(Console.ReadLine());
-                    Crop existingCrop = FindCrop(idInput);
+                    existingCrop = FindCrop(idInput);
 
                     if (existingCrop != null)
                     {
@@ -108,18 +109,34 @@ namespace ConsoleApp1
                 }
                 else if (cropChoice == 2)
                 {
-                    
                     Console.WriteLine("\nAdd a brand new croptype.\n");
                     Console.WriteLine("What Id?");
                     int idInput = int.Parse(Console.ReadLine());
-                    Console.WriteLine("\nWhat croptype?");
-                    string cropInput = Console.ReadLine();
-                    Console.WriteLine("\nWhat name?");
-                    string nameInput = Console.ReadLine();
-                    Console.WriteLine("\nHow many?");
-                    int quantityInput = int.Parse(Console.ReadLine());
-                    Console.WriteLine("\n" + quantityInput + " " + nameInput + " is now added to the crops");
-                    crops.Add(new Crop(idInput, nameInput, cropInput, quantityInput));
+                    bool idExists = false;
+
+                    foreach (Crop crop in crops)
+                    {
+                        if (crop.Id == idInput)
+                        {
+                            idExists = true;
+                            break;
+                        }
+                    }
+                    if (!idExists)
+                    {
+                        Console.WriteLine("\nWhat croptype?");
+                        string cropInput = Console.ReadLine();
+                        Console.WriteLine("\nWhat name?");
+                        string nameInput = Console.ReadLine();
+                        Console.WriteLine("\nHow many?");
+                        int quantityInput = int.Parse(Console.ReadLine());
+                        Console.WriteLine("\n" + quantityInput + " " + nameInput + " is now added to the crops");
+                        crops.Add(new Crop(idInput, nameInput, cropInput, quantityInput));
+                    }
+                    else
+                    {
+                        Console.WriteLine("You can only choose a non exsisting ID.");
+                    }
                 }
             }
             catch

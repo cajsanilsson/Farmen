@@ -29,27 +29,29 @@ namespace ConsoleApp1
                     Console.WriteLine("3. End program\n");
                     Console.WriteLine("What would you like to do? Chose by number");
                     MainMenuInput = int.Parse(Console.ReadLine());
+
+                    switch (MainMenuInput.ToString())
+                    {
+                        case "1":
+                            Console.Clear();
+                            animalManager.AnimalMenu(cropManager.GetCrop());
+                            break;
+                        case "2":
+                            Console.Clear();
+                            cropManager.CropMenu();
+                            break;
+                        case "3":
+                            break;
+                        default:
+                            Console.WriteLine("\nYou either wrote to many numbers or a number that doesnt exist. Press enter to try again.");
+                            Console.ReadKey();
+                            break;
+                    }
                 }
                 catch
                 {
-                    Console.WriteLine("\nYou can only write numbers");
-                }
-
-                switch (MainMenuInput.ToString())
-                {
-                    case "1":
-                        Console.Clear();
-                        animalManager.AnimalMenu(cropManager.GetCrop());
-                        break;
-                    case "2":
-                        Console.Clear();
-                        cropManager.CropMenu();
-                        break;
-                    case "3":
-                        break;
-                    default:
-                        Console.WriteLine("\nYou either wrote to many numbers or a number that doesnt exist.");
-                        break;
+                    Console.WriteLine("\nYou can only write numbers. Press enter to try again.");
+                    Console.ReadKey();
                 }
             }
         }

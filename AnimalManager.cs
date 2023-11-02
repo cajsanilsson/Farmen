@@ -52,7 +52,6 @@ namespace ConsoleApp1
                         ViewAnimal();
                         Console.WriteLine("\nPress enter to return to Animal menu.\n");
                         Console.ReadLine();
-
                         break;
                     case "2":
                         Console.Clear();
@@ -76,7 +75,6 @@ namespace ConsoleApp1
                             Console.WriteLine("\nYou can only write numbers");
                         }
                         RemoveAnimal(id);
-                        Console.WriteLine("Your animal has been succesfully removed\n");
                         Console.WriteLine("Press enter to return to Animal menu.\n");
                         Console.ReadLine();
                         break;
@@ -202,6 +200,7 @@ namespace ConsoleApp1
             if (removeAnimal != null)
             {
                 animals.Remove(removeAnimal);
+                Console.WriteLine("Your animal has been succesfully removed\n");
             }
             else
             {
